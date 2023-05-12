@@ -8,6 +8,8 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 import { app } from './app.module';
+import { Router } from '@angular/router';
+import { doc, getDoc, getFirestore, onSnapshot } from 'firebase/firestore';
 
 @Component({
   selector: 'app-root',
@@ -15,21 +17,29 @@ import { app } from './app.module';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'social-app';
-
   auth: Auth = getAuth(app);
+  db = getFirestore(app);
 
-  constructor(private loginSheet: MatBottomSheet) {
+  title = 'social-app';
+  userHasProfile = true;
+  userDocument: UserDocument;
+
+  constructor(private loginSheet: MatBottomSheet, private router: Router) {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         console.log('user: ', user);
+        if (!user.emailVerified) {
+          this.router.navigate(['emailVerification']);
+        } else {
+          this.getUserProfile();
+        }
       } else {
       }
     });
   }
 
   loggedIn() {
-    return this.auth.currentUser!!;
+    return !!this.auth.currentUser;
   }
 
   onLoginClick() {
@@ -39,4 +49,17 @@ export class AppComponent {
   onLogoutClick() {
     this.auth.signOut();
   }
+
+  getUserProfile() {
+    onSnapshot(doc(this.db, 'Users', this.auth.currentUser!.uid), (doc) => {
+      console.log('doc', doc);
+      this.userDocument = <UserDocument>doc.data();
+      this.userHasProfile = doc.exists();
+    });
+  }
+}
+
+export interface UserDocument {
+  publicName: string;
+  description: string;
 }
