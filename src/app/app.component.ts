@@ -55,6 +55,9 @@ export class AppComponent {
       console.log('doc', doc);
       this.userDocument = <UserDocument>doc.data();
       this.userHasProfile = doc.exists();
+      if (this.userHasProfile) {
+        this.router.navigate(['postfeed']);
+      }
     });
   }
 }
