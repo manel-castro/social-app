@@ -22,7 +22,7 @@ export class AppComponent {
 
   title = 'social-app';
   userHasProfile = true;
-  userDocument: UserDocument;
+  private static userDocument: UserDocument | undefined;
 
   constructor(private loginSheet: MatBottomSheet, private router: Router) {
     onAuthStateChanged(this.auth, (user) => {
@@ -34,6 +34,8 @@ export class AppComponent {
           this.getUserProfile();
         }
       } else {
+        AppComponent.userDocument = undefined;
+        this.router.navigate(['']);
       }
     });
   }
@@ -50,11 +52,21 @@ export class AppComponent {
     this.auth.signOut();
   }
 
+  public static getUserDocument() {
+    return AppComponent.userDocument;
+  }
+  getUsername() {
+    return AppComponent.userDocument?.publicName;
+  }
+
   getUserProfile() {
     onSnapshot(doc(this.db, 'Users', this.auth.currentUser!.uid), (doc) => {
       console.log('doc', doc);
-      this.userDocument = <UserDocument>doc.data();
+      AppComponent.userDocument = <UserDocument>doc.data();
       this.userHasProfile = doc.exists();
+
+      AppComponent.userDocument.userId = this.auth.currentUser?.uid;
+
       if (this.userHasProfile) {
         this.router.navigate(['postfeed']);
       }
@@ -65,4 +77,5 @@ export class AppComponent {
 export interface UserDocument {
   publicName: string;
   description: string;
+  userId?: string;
 }

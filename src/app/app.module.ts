@@ -20,6 +20,9 @@ import { EmailVerificationComponent } from './pages/email-verification/email-ver
 import { ProfileComponent } from './tools/profile/profile.component';
 import { PostFeedComponent } from './pages/post-feed/post-feed.component';
 import { CreatePostComponent } from './tools/create-post/create-post.component';
+import { PostComponent } from './tools/post/post.component';
+import { ReplyComponent } from './tools/reply/reply.component';
+import { FavoriteIconComponent } from './tools/favorite-icon/favorite-icon.component';
 
 export const app = initializeApp(environment.firebaseConfig);
 
@@ -32,6 +35,9 @@ export const app = initializeApp(environment.firebaseConfig);
     ProfileComponent,
     PostFeedComponent,
     CreatePostComponent,
+    PostComponent,
+    ReplyComponent,
+    FavoriteIconComponent,
   ],
   imports: [
     BrowserModule,
