@@ -54,6 +54,7 @@ export class FavoriteIconComponent {
           this.isMarkedFavorite = true;
           return true;
         }
+        this.isMarkedFavorite = false;
         return false;
         console.log('worked favdoc');
       })

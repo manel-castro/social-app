@@ -23,6 +23,7 @@ import { CreatePostComponent } from './tools/create-post/create-post.component';
 import { PostComponent } from './tools/post/post.component';
 import { ReplyComponent } from './tools/reply/reply.component';
 import { FavoriteIconComponent } from './tools/favorite-icon/favorite-icon.component';
+import { SaveIconComponent } from './tools/save-icon/save-icon.component';
 
 export const app = initializeApp(environment.firebaseConfig);
 
@@ -38,6 +39,7 @@ export const app = initializeApp(environment.firebaseConfig);
     PostComponent,
     ReplyComponent,
     FavoriteIconComponent,
+    SaveIconComponent,
   ],
   imports: [
     BrowserModule,
