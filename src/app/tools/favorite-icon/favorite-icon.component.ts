@@ -26,8 +26,8 @@ export class FavoriteIconComponent {
   auth = getAuth(app);
   isMarkedFavorite = false;
 
-  ngOnInit() {
-    this.checkIsFavorite();
+  async ngOnInit() {
+    await this.checkIsFavorite();
   }
 
   checkIsFavorite() {
@@ -63,12 +63,12 @@ export class FavoriteIconComponent {
       });
   }
 
-  onFavoriteClick() {
+  async onFavoriteClick() {
     console.log('postData:', this.postData);
 
     if (!AppComponent.getUserDocument()?.userId) return;
 
-    const isFavorite = this.checkIsFavorite();
+    const isFavorite = await this.checkIsFavorite();
 
     const docRef = doc(
       this.firestore,
