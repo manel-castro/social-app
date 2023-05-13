@@ -63,14 +63,26 @@ export class AppComponent {
     onSnapshot(doc(this.db, 'Users', this.auth.currentUser!.uid), (doc) => {
       console.log('doc', doc);
       AppComponent.userDocument = <UserDocument>doc.data();
+
       this.userHasProfile = doc.exists();
 
       AppComponent.userDocument.userId = this.auth.currentUser?.uid;
 
-      if (this.userHasProfile) {
-        this.router.navigate(['postfeed']);
+      if (!this.userHasProfile) {
+        this.router.navigate(['']);
       }
     });
+  }
+  onClickUser() {
+    this.router.navigate(['profile']);
+  }
+
+  onClickLogo() {
+    if (this.loggedIn()) {
+      this.router.navigate(['postfeed']);
+    } else {
+      this.router.navigate(['']);
+    }
   }
 }
 

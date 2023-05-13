@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import {
   Auth,
@@ -19,7 +20,10 @@ export class AuthenticatorComponent {
   state = AuthenticatorCompState.LOGIN;
   firebaseAuth: Auth;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef) {
+  constructor(
+    private bottomSheetRef: MatBottomSheetRef,
+    private router: Router
+  ) {
     this.firebaseAuth = getAuth(app);
   }
 
@@ -57,7 +61,11 @@ export class AuthenticatorComponent {
 
     if (this.isNotEmpty(email) && this.isNotEmpty(password)) {
       signInWithEmailAndPassword(this.firebaseAuth, email, password)
-        .then((suc) => this.bottomSheetRef.dismiss())
+        .then((suc) => {
+          this.router.navigate(['postfeed']);
+
+          this.bottomSheetRef.dismiss();
+        })
         .catch((err) => {
           alert(`failed to login ${err}`);
         });
