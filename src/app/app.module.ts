@@ -24,6 +24,9 @@ import { PostComponent } from './tools/post/post.component';
 import { ReplyComponent } from './tools/reply/reply.component';
 import { FavoriteIconComponent } from './tools/favorite-icon/favorite-icon.component';
 import { SaveIconComponent } from './tools/save-icon/save-icon.component';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
+import { RouterModule } from '@angular/router';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 export const app = initializeApp(environment.firebaseConfig);
 
@@ -40,6 +43,8 @@ export const app = initializeApp(environment.firebaseConfig);
     ReplyComponent,
     FavoriteIconComponent,
     SaveIconComponent,
+    ProfileDetailsComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,7 @@ export const app = initializeApp(environment.firebaseConfig);
     MatCardModule,
     MatDialogModule,
     MatIconModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

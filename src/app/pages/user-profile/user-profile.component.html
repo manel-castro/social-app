@@ -1,0 +1,11 @@
+<div [style]="{ padding: '20px', paddingTop: '100px' }">
+  <p>user-profile works!</p>
+
+  <ul *ngIf="profileSettings?.length">
+    <li *ngFor="let setting of profileSettings">
+      <a [routerLink]="['/profile', setting]">{{ setting }}</a>
+    </li>
+  </ul>
+
+  <router-outlet></router-outlet>
+</div>
