@@ -1,0 +1,7 @@
+<ng-container *ngIf="data$ | async as myData">
+  <ul>
+    <li *ngFor="let item of myData">
+      {{ item.name }}
+    </li>
+  </ul>
+</ng-container>

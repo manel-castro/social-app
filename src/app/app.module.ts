@@ -27,6 +27,7 @@ import { SaveIconComponent } from './tools/save-icon/save-icon.component';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { RxjsComponent } from './pages/rxjs/rxjs.component';
 
 export const app = initializeApp(environment.firebaseConfig);
 
@@ -45,6 +46,7 @@ export const app = initializeApp(environment.firebaseConfig);
     SaveIconComponent,
     ProfileDetailsComponent,
     UserProfileComponent,
+    RxjsComponent,
   ],
   imports: [
     BrowserModule,
