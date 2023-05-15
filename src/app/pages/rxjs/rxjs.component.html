@@ -1,7 +1,21 @@
-<ng-container *ngIf="data$ | async as myData">
-  <ul>
-    <li *ngFor="let item of myData">
-      {{ item.name }}
-    </li>
-  </ul>
-</ng-container>
+<div [style]="{ padding: '20px', paddingTop: '100px' }">
+  <form onSubmit="">
+    <input
+      type="search"
+      id="default-search"
+      (input)="search($event)"
+      required
+      placeholder="Search..."
+    />
+  </form>
+
+  <div *ngFor="let character of characters$ | async">
+    {{ character.name }}
+  </div>
+
+  <ng-container *ngIf="characters$ | async as result">
+    <div>
+      {{ result | json }}
+    </div>
+  </ng-container>
+</div>

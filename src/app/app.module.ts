@@ -28,6 +28,7 @@ import { ProfileDetailsComponent } from './components/profile-details/profile-de
 import { RouterModule } from '@angular/router';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
+import { HttpClientModule } from '@angular/common/http';
 
 export const app = initializeApp(environment.firebaseConfig);
 
@@ -58,6 +59,7 @@ export const app = initializeApp(environment.firebaseConfig);
     MatDialogModule,
     MatIconModule,
     RouterModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

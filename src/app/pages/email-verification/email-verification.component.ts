@@ -17,7 +17,7 @@ export class EmailVerificationComponent {
     if (this.auth?.currentUser && !this.auth.currentUser.emailVerified) {
       sendEmailVerification(this.auth.currentUser);
     } else {
-      this.router.navigate(['']);
+      // this.router.navigate(['']);
     }
   }
 
