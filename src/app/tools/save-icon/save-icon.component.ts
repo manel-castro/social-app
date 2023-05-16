@@ -28,7 +28,8 @@ export class SaveIconComponent {
   }
 
   getIsStarred() {
-    if (!this.auth.currentUser) return;
+    if (!this.auth.currentUser || !this.postData?.postId) return;
+
     const docRef = doc(
       this.db,
       'Users',
@@ -49,7 +50,7 @@ export class SaveIconComponent {
   }
 
   async onClickStarred() {
-    if (!this.auth.currentUser) return;
+    if (!this.auth.currentUser || !this.postData?.postId) return;
 
     const _isStarred = await this.getIsStarred();
 
@@ -69,6 +70,7 @@ export class SaveIconComponent {
     } else {
       setDoc(docRef, {
         timestamp: Timestamp.now(),
+        post: this.postData,
       })
         .then((docId) => {
           this.isStarred = true;

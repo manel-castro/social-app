@@ -20,6 +20,7 @@ export class PostComponent {
   constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
+    console.log('postData: ', this.postData);
     this.getCreatorInfo();
   }
 
@@ -28,11 +29,13 @@ export class PostComponent {
   }
 
   async getCreatorInfo() {
+    if (!this.postData?.creatorId) return;
+
     const res = await getDoc(
       doc(this.firestore, 'Users', this.postData.creatorId)
     );
     const userDocument = res.data();
-
+    2;
     this.creatorName = userDocument?.publicName;
     this.creatorDescription = userDocument?.description;
   }

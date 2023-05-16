@@ -1,0 +1,4 @@
+it works
+<div *ngFor="let starred of starreds">
+  <app-post *ngIf="starred" [postData]="starred.data.post"></app-post>
+</div>

@@ -33,7 +33,7 @@ export class FavoriteIconComponent {
   checkIsFavorite() {
     console.log('hapened favDoc');
 
-    if (!this.auth.currentUser?.uid) return;
+    if (!this.auth.currentUser?.uid || !this.postData?.postId) return;
 
     console.log('loged favDoc');
     const userId = this.auth.currentUser?.uid;

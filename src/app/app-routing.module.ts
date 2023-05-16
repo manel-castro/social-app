@@ -8,6 +8,7 @@ import { ProfileComponent } from './tools/profile/profile.component';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { RxjsComponent } from './pages/rxjs/rxjs.component';
+import { StarredComponent } from './components/starred/starred.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
-    children: [{ path: ':name', component: ProfileDetailsComponent }],
+    children: [
+      { path: 'Starred', component: StarredComponent },
+      { path: ':name', component: ProfileDetailsComponent },
+    ],
   },
   {
     path: 'rxjs',
